@@ -19,8 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey _scaffoldkey = GlobalKey<ScaffoldState>();
   final RoundedLoadingButtonController googleController =
       RoundedLoadingButtonController();
-  final RoundedLoadingButtonController facebookController =
-      RoundedLoadingButtonController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,30 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  RoundedLoadingButton(
-                    controller: facebookController,
-                    successColor: Colors.blue,
-                    width: MediaQuery.of(context).size.width * 0.80,
-                    color: Colors.blue,
-                    onPressed: () {},
-                    child: const Wrap(
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.facebook,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                        SizedBox(width: 14),
-                        Text(
-                          "Sign in with facebook",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
             ],
@@ -130,7 +104,6 @@ class _LoginScreenState extends State<LoginScreen> {
       // ignore: use_build_context_synchronously
       openSnackbar(context, "Check your internet connection", Colors.red);
       googleController.reset();
-      facebookController.reset();
     } else {
       await sp.signInWithGoogle().then((value) {
         if (sp.hasError == true) {
